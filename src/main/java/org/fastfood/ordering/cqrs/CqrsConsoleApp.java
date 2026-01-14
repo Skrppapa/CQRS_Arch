@@ -69,7 +69,7 @@ public class CqrsConsoleApp {
                     case "5" -> {
                         System.out.print("Введите ID заказа: "); UUID id = UUID.fromString(sc.nextLine());
                         commands.handleUpdateStatus(id, OrderStatus.COMPLETED);
-                        System.out.println("Статус изменен: COMPLETED (Завершено).");
+                        System.out.println("Статус изменен: COMPLETED.");
                     }
 
                     case "6" -> {
@@ -81,7 +81,7 @@ public class CqrsConsoleApp {
 
                     case "7" -> {
                         queries.project(commands.getNewEvents());
-                        System.out.println("Данные успешно синхронизированы с Query Side.");
+                        System.out.println("Данные успешно синхронизированы");
                     }
 
                     case "8" -> showReportsMenu();
@@ -94,33 +94,33 @@ public class CqrsConsoleApp {
                     default -> System.out.println("Ошибка: Неверный пункт меню.");
                 }
             } catch (Exception e) {
-                System.out.println("ОШИБКА БИЗНЕС-ЛОГИКИ: " + e.getMessage());
+                System.out.println("Ошибка бизнес-логики: " + e.getMessage());
             }
         }
     }
 
     private void printMainMenu() {
-        System.out.println("\n=== CQRS УПРАВЛЕНИЕ КЛИЕНТСКИМИ ЗАКАЗАМИ ===");
-        System.out.println("--- Командная сторона (Write) ---");
+        System.out.println("\n=== УПРАВЛЕНИЕ ЗАКАЗАМИ КЛИЕНТОВ ===");
+        System.out.println("--- Команды ---");
         System.out.println("1. Создать новый заказ");
         System.out.println("2. Добавить блюдо");
-        System.out.println("3. Удалить блюдо (Изменение состава)");
+        System.out.println("3. Удалить блюдо");
         System.out.println("4. Отправить на кухню (COOKING)");
         System.out.println("5. Завершить заказ (COMPLETED)");
-        System.out.println("6. ОТМЕНИТЬ заказ (CANCELLED)");
+        System.out.println("6. Отменить заказ (CANCELLED)");
         System.out.println("--- Синхронизация ---");
-        System.out.println("7. СИНХРОНИЗИРОВАТЬ модели (Project Events)");
-        System.out.println("--- Запросная сторона (Read) ---");
-        System.out.println("8. ОТЧЕТЫ, СТАТИСТИКА И ИСТОРИЯ");
+        System.out.println("7. Синхронизировать модели");
+        System.out.println("--- Запросная ---");
+        System.out.println("8. Отчетность");
         System.out.println("0. Выход");
         System.out.print("Выберите действие: ");
     }
 
     private void showReportsMenu() {
-        System.out.println("\n--- ВЫБЕРИТЕ ТИП ПРЕДСТАВЛЕНИЯ (QUERY MODEL) ---");
+        System.out.println("\n--- ВЫБЕРИТЕ ТИП ОТЧЕТА ---");
         System.out.println("1. Краткая статистика (Обзор всех заказов)");
         System.out.println("2. Отчет по составу блюд (Текущее наполнение)");
-        System.out.println("3. Полная история событий заказа (Audit Log)");
+        System.out.println("3. Полная история событий заказа");
         System.out.println("0. Назад");
         System.out.print("Выбор: ");
 
